@@ -1,0 +1,7 @@
+﻿services:
+  responsevacancyengine:
+    image: responsevacancyengine
+    build:
+      context: .
+      dockerfile: ResponseVacancyEngine/Dockerfile
+
