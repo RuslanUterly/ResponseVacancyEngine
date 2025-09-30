@@ -1,6 +1,0 @@
-@ResponseVacancyEngine_HostAddress = http://localhost:5115
-
-GET {{ResponseVacancyEngine_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
