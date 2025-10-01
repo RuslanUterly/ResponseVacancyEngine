@@ -7,12 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Persistence\DataAccess\" />
-      <Folder Include="Persistence\Migrations\" />
+      <Folder Include="Interfaces\" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ResponseVacancyEngine.Persistence\ResponseVacancyEngine.Persistence.csproj" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.9" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+      <PackageReference Include="System.Diagnostics.Tools" Version="4.3.0" />
     </ItemGroup>
 
 </Project>

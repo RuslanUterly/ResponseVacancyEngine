@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResponseVacancyEngine.Appli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResponseVacancyEngine.Infrastructure", "ResponseVacancyEngine.Infrastructure\ResponseVacancyEngine.Infrastructure.csproj", "{F224407A-D61A-4628-AFDC-134621A2DC48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResponseVacancyEngine.Persistance", "ResponseVacancyEngine.Persistance\ResponseVacancyEngine.Persistance.csproj", "{B90417EF-6D5D-4160-9779-9D6A65BAA010}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResponseVacancyEngine.Persistence", "ResponseVacancyEngine.Persistence\ResponseVacancyEngine.Persistence.csproj", "{B90417EF-6D5D-4160-9779-9D6A65BAA010}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
