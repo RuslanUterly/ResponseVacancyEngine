@@ -26,4 +26,8 @@
       <ProjectReference Include="..\ResponseVacancyEngine.Infrastructure\ResponseVacancyEngine.Infrastructure.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Jobs\" />
+    </ItemGroup>
+
 </Project>

@@ -7,4 +7,9 @@
         <RootNamespace>ResponseVacaancyEngine.Application</RootNamespace>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="DTOs\" />
+      <Folder Include="Services\" />
+    </ItemGroup>
+
 </Project>
