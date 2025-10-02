@@ -14,4 +14,7 @@ public class RespondedVacancy
     
     public long GroupId { get; set; }
     public Group Group { get; set; }
+    
+    public long AccountId { get; set; }
+    public Account Account { get; set; }
 }

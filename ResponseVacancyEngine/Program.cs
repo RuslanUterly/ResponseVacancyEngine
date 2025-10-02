@@ -7,7 +7,7 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<VacancyContext>(options =>
+builder.Services.AddDbContextPool<VacancyContext>(options =>
 {
     options
         .UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"), opt =>
