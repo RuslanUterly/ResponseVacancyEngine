@@ -14,6 +14,8 @@ using ResponseVacancyEngine.Persistence.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors();
+
 builder.Services.AddOpenApi();
 
 builder.Services.AddControllers();
@@ -119,6 +121,13 @@ using (var scope = app.Services.CreateScope())
         }
     }
 }
+
+app.UseCors(options => options
+    .WithOrigins(new[] {"http://localhost:5173"})
+    .AllowAnyHeader()
+    .AllowAnyMethod()
+    .AllowCredentials()
+);
 
 
 app.Run();
