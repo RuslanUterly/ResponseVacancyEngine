@@ -12,7 +12,13 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\ResponseVacancyEngine.Application\ResponseVacancyEngine.Application.csproj" />
       <ProjectReference Include="..\ResponseVacancyEngine.Persistence\ResponseVacancyEngine.Persistence.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.0.1" />
+      <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.0.1" />
     </ItemGroup>
 
 </Project>
