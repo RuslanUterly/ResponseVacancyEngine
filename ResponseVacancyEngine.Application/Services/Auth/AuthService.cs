@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Identity.Data;
 using ResponseVacancyEngine.Application.Helpers.ResultPattern;
 using ResponseVacancyEngine.Application.Infrastructure.Interfaces.JwtProvider;
 using ResponseVacancyEngine.Application.Services.Auth.Intefaces;
-using ResponseVacancyEngine.Persistence.Interfaces;
 using ResponseVacancyEngine.Persistence.Models;
 
 namespace ResponseVacancyEngine.Application.Services.Auth;

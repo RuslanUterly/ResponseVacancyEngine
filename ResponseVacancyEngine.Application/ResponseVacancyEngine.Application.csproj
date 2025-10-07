@@ -7,10 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="DTOs\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\ResponseVacancyEngine.Persistence\ResponseVacancyEngine.Persistence.csproj" />
     </ItemGroup>
 

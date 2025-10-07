@@ -4,9 +4,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using ResponseVacancyEngine.Application.Infrastructure.Interfaces.CryptoHelper;
 using ResponseVacancyEngine.Application.Infrastructure.Interfaces.JwtProvider;
 using ResponseVacancyEngine.Application.Services.Auth;
 using ResponseVacancyEngine.Application.Services.Auth.Intefaces;
+using ResponseVacancyEngine.Application.Services.Profile;
+using ResponseVacancyEngine.Application.Services.Profile.Interfaces;
+using ResponseVacancyEngine.Infrastructure.Helpers;
 using ResponseVacancyEngine.Infrastructure.JwtProvider;
 using ResponseVacancyEngine.Infrastructure.Options;
 using ResponseVacancyEngine.Infrastructure.Persistence;
@@ -20,12 +24,18 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddControllers();
 
+//crypto
+builder.Services.AddDataProtection();
+
 //options
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("JwtOptions"));
+builder.Services.Configure<CryptoOptions>(builder.Configuration.GetSection("CryptoOptions"));
 
 //service
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IJwtProvider, JwtProvider>();
+builder.Services.AddScoped<IProfileService, ProfileService>();
+builder.Services.AddScoped<ICryptoHelper, CryptoHelper>();
 
 //db
 builder.Services.AddDbContextPool<VacancyContext>(options =>
@@ -52,6 +62,9 @@ builder.Services.AddAuthentication(options =>
     })
     .AddJwtBearer(options =>
     {
+        options.RequireHttpsMetadata = false;
+        options.SaveToken = true;
+        
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = false,
@@ -75,8 +88,8 @@ builder.Services.AddSwaggerGen(c =>
         In = ParameterLocation.Header,
         Description = "Введите JWT токен так: Bearer {токен}",
         Name = "Authorization",
-        Type = SecuritySchemeType.ApiKey,
-        Scheme = "Bearer"
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer"
     });
 
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
@@ -97,6 +110,15 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
+app.UseRouting();
+
+app.UseCors(options => options
+    .WithOrigins(new[] {"http://localhost:5173"})
+    .AllowAnyHeader()
+    .AllowAnyMethod()
+    .AllowCredentials()
+);
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -104,9 +126,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.MapControllers();
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapControllers();
 
 using (var scope = app.Services.CreateScope())
 {
@@ -121,13 +144,5 @@ using (var scope = app.Services.CreateScope())
         }
     }
 }
-
-app.UseCors(options => options
-    .WithOrigins(new[] {"http://localhost:5173"})
-    .AllowAnyHeader()
-    .AllowAnyMethod()
-    .AllowCredentials()
-);
-
 
 app.Run();

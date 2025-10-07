@@ -5,10 +5,10 @@ namespace ResponseVacancyEngine.Persistence.Models;
 public class Account : IdentityUser<long>
 {
     public override long Id { get; set; }
-    public string? ClientIdHash { get; set; }
-    public string? ClientSecretHash { get; set; }
-    public string? AccessTokenHash { get; set; }
-    public string? RefreshTokenHash { get; set; }
+    public string? ClientId { get; set; }
+    public string? ClientSecret { get; set; }
+    public string? AccessToken { get; set; }
+    public string? RefreshToken { get; set; }
     public DateTime? AccessTokenExpiresAt { get; set; }
     public bool IsActiveResponse { get; set; }
     
