@@ -6,4 +6,5 @@ public class AccountDto
     public string? Email { get; set; }
     public string? ClientId { get; set; }
     public string? ClientSecret { get; set; }
+    public bool IsActiveResponse { get; set; }
 }

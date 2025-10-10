@@ -26,7 +26,8 @@ public class ProfileService(
             Id = account.Id,
             Email = account.Email,
             ClientId = cryptoHelper.Decrypt(account.ClientId),
-            ClientSecret = cryptoHelper.Decrypt(account.ClientSecret)
+            ClientSecret = cryptoHelper.Decrypt(account.ClientSecret),
+            IsActiveResponse = account.IsActiveResponse
         });
     }
 
