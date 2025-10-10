@@ -2,9 +2,9 @@ namespace ResponseVacancyEngine.Persistence.Interfaces;
 
 public interface IBaseRepository<T>
 {
-    Task<bool> CreateAccount(T data);
-    Task<bool> UpdateAccount(T data);
-    Task<bool> DeleteAccount(T data);
+    Task<bool> Create(T data);
+    Task<bool> Update(T data);
+    Task<bool> Delete(T data);
     
     Task<bool> Save();
 }
