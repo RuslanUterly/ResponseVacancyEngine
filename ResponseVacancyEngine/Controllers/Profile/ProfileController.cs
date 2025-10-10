@@ -20,7 +20,6 @@ public class ProfileController(IProfileService profileService) : ControllerBase
 
         return Ok(result.Data);
     }
-    
 
     [HttpPost("update-hh-credentials")]
     [Authorize]
