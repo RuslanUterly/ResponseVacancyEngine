@@ -7,7 +7,7 @@ public class Result
     public string? Error { get; private set; }
     public int StatusCode { get; private set; }
     protected bool HasValue => Error == null;
-
+    
     protected Result(int statusCode, string? error = null)
     {
         StatusCode = statusCode;

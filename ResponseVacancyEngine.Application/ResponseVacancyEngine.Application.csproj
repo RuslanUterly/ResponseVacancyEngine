@@ -17,6 +17,9 @@
       <Reference Include="Microsoft.AspNetCore.Identity">
         <HintPath>C:\Users\najmi\.dotnet\packs\Microsoft.AspNetCore.App.Ref\9.0.9\ref\net9.0\Microsoft.AspNetCore.Identity.dll</HintPath>
       </Reference>
+      <Reference Include="Microsoft.Extensions.Http">
+        <HintPath>C:\Users\najmi\.dotnet\packs\Microsoft.AspNetCore.App.Ref\9.0.9\ref\net9.0\Microsoft.Extensions.Http.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

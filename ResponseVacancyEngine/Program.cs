@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using ResponseVacancyEngine.Application.Infrastructure.Interfaces.CryptoHelper;
 using ResponseVacancyEngine.Application.Infrastructure.Interfaces.JwtProvider;
+using ResponseVacancyEngine.Application.Infrastructure.Interfaces.Services.HeadHunterApi;
 using ResponseVacancyEngine.Application.Services.Auth;
 using ResponseVacancyEngine.Application.Services.Auth.Intefaces;
 using ResponseVacancyEngine.Application.Services.Profile;
@@ -14,6 +15,7 @@ using ResponseVacancyEngine.Infrastructure.Helpers;
 using ResponseVacancyEngine.Infrastructure.JwtProvider;
 using ResponseVacancyEngine.Infrastructure.Options;
 using ResponseVacancyEngine.Infrastructure.Persistence;
+using ResponseVacancyEngine.Infrastructure.Services.HeadHunterAPI;
 using ResponseVacancyEngine.Persistence.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,18 +26,22 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddControllers();
 
+builder.Services.AddHttpClient();
+
 //crypto
 builder.Services.AddDataProtection();
 
 //options
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("JwtOptions"));
 builder.Services.Configure<CryptoOptions>(builder.Configuration.GetSection("CryptoOptions"));
+builder.Services.Configure<HeadHunterUriOptions>(builder.Configuration.GetSection("HHUriOptions"));
 
 //service
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IJwtProvider, JwtProvider>();
 builder.Services.AddScoped<IProfileService, ProfileService>();
 builder.Services.AddScoped<ICryptoHelper, CryptoHelper>();
+builder.Services.AddScoped<IHeadHunterOAuthClient, HeadHunterOAuthClient>();
 
 //db
 builder.Services.AddDbContextPool<VacancyContext>(options =>
