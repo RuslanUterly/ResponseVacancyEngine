@@ -1,5 +1,6 @@
 using ResponseVacancyEngine.Application.DTOs;
 using ResponseVacancyEngine.Application.DTOs.HttpResponse;
+using ResponseVacancyEngine.Application.DTOs.Profile;
 using ResponseVacancyEngine.Persistence.Models;
 
 namespace ResponseVacancyEngine.Application.Infrastructure.Interfaces.Services.HeadHunterApi;

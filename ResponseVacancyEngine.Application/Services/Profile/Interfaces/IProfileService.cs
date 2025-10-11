@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using ResponseVacancyEngine.Application.DTOs;
+using ResponseVacancyEngine.Application.DTOs.Profile;
 using ResponseVacancyEngine.Application.Helpers.ResultPattern;
 
 namespace ResponseVacancyEngine.Application.Services.Profile.Interfaces;

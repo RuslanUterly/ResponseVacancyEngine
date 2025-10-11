@@ -46,6 +46,7 @@ public class Result<T> : Result
     public new static Result<T> NoContent() => new Result<T>(StatusCodes.Status204NoContent);
     public new static Result<T> BadRequest(string error) => new Result<T>(StatusCodes.Status400BadRequest, error);
     public new static Result<T> Unauthorized(string error) => new Result<T>(StatusCodes.Status401Unauthorized, error);
+    public new static Result<T> Forbidden(string error) => new Result<T>(StatusCodes.Status403Forbidden, error);
     public new static Result<T> NotFound(string error) => new Result<T>(StatusCodes.Status404NotFound, error);
     public new static Result<T> Fail(int statusCode, string error) => new Result<T>(statusCode, error);
 }

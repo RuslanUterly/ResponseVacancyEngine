@@ -9,14 +9,19 @@ using ResponseVacancyEngine.Application.Infrastructure.Interfaces.JwtProvider;
 using ResponseVacancyEngine.Application.Infrastructure.Interfaces.Services.HeadHunterApi;
 using ResponseVacancyEngine.Application.Services.Auth;
 using ResponseVacancyEngine.Application.Services.Auth.Intefaces;
+using ResponseVacancyEngine.Application.Services.Group;
+using ResponseVacancyEngine.Application.Services.Group.Interfaces;
 using ResponseVacancyEngine.Application.Services.Profile;
 using ResponseVacancyEngine.Application.Services.Profile.Interfaces;
 using ResponseVacancyEngine.Infrastructure.Helpers;
 using ResponseVacancyEngine.Infrastructure.JwtProvider;
 using ResponseVacancyEngine.Infrastructure.Options;
 using ResponseVacancyEngine.Infrastructure.Persistence;
+using ResponseVacancyEngine.Infrastructure.Persistence.DataAccess;
 using ResponseVacancyEngine.Infrastructure.Services.HeadHunterAPI;
+using ResponseVacancyEngine.Persistence.Interfaces;
 using ResponseVacancyEngine.Persistence.Models;
+using ResponseVacancyEngine.Persistence.Models.Enums;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,6 +47,10 @@ builder.Services.AddScoped<IJwtProvider, JwtProvider>();
 builder.Services.AddScoped<IProfileService, ProfileService>();
 builder.Services.AddScoped<ICryptoHelper, CryptoHelper>();
 builder.Services.AddScoped<IHeadHunterOAuthClient, HeadHunterOAuthClient>();
+builder.Services.AddScoped<IGroupService, GroupService>();
+
+//repository
+builder.Services.AddScoped<IGroupRepository, GroupRepository>();
 
 //db
 builder.Services.AddDbContextPool<VacancyContext>(options =>
@@ -140,7 +149,7 @@ app.MapControllers();
 using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole<long>>>();
-    string[] roles = new[] { "User", "Admin" };
+    string[] roles = [Roles.User, Roles.Admin];
 
     foreach (var role in roles)
     {

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ResponseVacancyEngine.Application.DTOs;
+using ResponseVacancyEngine.Application.DTOs.Profile;
 using ResponseVacancyEngine.Application.Services.Profile.Interfaces;
 
 namespace ResponseVacancyEngine.Controllers.Profile;
@@ -30,7 +31,7 @@ public class ProfileController(IProfileService profileService) : ControllerBase
         if (!result)
             return StatusCode(result.StatusCode, result.Error);
         
-        return Ok();
+        return NoContent();
     }
     
     [HttpPost("update-hh-tokens")]
@@ -42,7 +43,7 @@ public class ProfileController(IProfileService profileService) : ControllerBase
         if (!result)
             return StatusCode(result.StatusCode, result.Error);
         
-        return Ok();
+        return NoContent();
     }
     
     [HttpPost("update-hh-response-mode")]
@@ -54,7 +55,7 @@ public class ProfileController(IProfileService profileService) : ControllerBase
         if (!result)
             return StatusCode(result.StatusCode, result.Error);
         
-        return Ok();
+        return NoContent();
     }
 
     [HttpPost("exchange-hh-code")]
