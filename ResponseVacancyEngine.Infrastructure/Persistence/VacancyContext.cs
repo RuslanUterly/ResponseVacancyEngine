@@ -9,10 +9,10 @@ namespace ResponseVacancyEngine.Infrastructure.Persistence;
 
 public class VacancyContext(DbContextOptions<VacancyContext> options) : IdentityDbContext<Account, IdentityRole<long>, long>(options), IVacancyContext
 {
-    public DbSet<Group>? Groups { get; set; }
-    public DbSet<ExcludedWord>?  WordOfExceptions { get; set; }
-    public DbSet<RespondedVacancy>? RespondedVacancies { get; set; }
-    public DbSet<Account>? Accounts { get; set; }
+    public DbSet<Group> Groups { get; set; }
+    public DbSet<ExcludedWord>  WordOfExceptions { get; set; }
+    public DbSet<RespondedVacancy> RespondedVacancies { get; set; }
+    public DbSet<Account> Accounts { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -1,6 +1,6 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
-using ResponseVacancyEngine.Application.DTOs;
+using ResponseVacancyEngine.Application.DTOs.Profile;
 using ResponseVacancyEngine.Application.Helpers.ResultPattern;
 using ResponseVacancyEngine.Application.Infrastructure.Interfaces.CryptoHelper;
 using ResponseVacancyEngine.Application.Infrastructure.Interfaces.Services.HeadHunterApi;
@@ -47,7 +47,7 @@ public class ProfileService(
         if (!result.Succeeded)
             return Result.BadRequest("Ошибка! ID и Secret не были добавлены");
         
-        return Result.Ok();
+        return Result.NoContent();
     }
 
     public async Task<Result> UpdateHeadHunterJwtCredentialsAsync(ClaimsPrincipal user,
@@ -67,7 +67,7 @@ public class ProfileService(
         if (!result.Succeeded)
             return Result.BadRequest("Ошибка! токены не были добавлены");
         
-        return Result.Ok();
+        return Result.NoContent();
     }
 
     public async Task<Result> UpdateHeadHunterActiveResponse(ClaimsPrincipal user, bool isActive)
@@ -84,7 +84,7 @@ public class ProfileService(
         if (!result.Succeeded)
             return Result.BadRequest("Ошибка!");
         
-        return Result.Ok();
+        return Result.NoContent();
     }
     
     public async Task<Result<bool>> ExchangeHeadHunterCodeAsync(ClaimsPrincipal user, string code)

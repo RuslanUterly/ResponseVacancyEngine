@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace ResponseVacancyEngine.Application.DTOs;
+namespace ResponseVacancyEngine.Application.DTOs.Profile;
 
 public class HeadHunterJwtCredentialsDto
 {

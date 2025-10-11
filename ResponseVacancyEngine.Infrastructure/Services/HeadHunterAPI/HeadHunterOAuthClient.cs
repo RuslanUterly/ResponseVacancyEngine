@@ -2,6 +2,7 @@ using System.Net.Http.Json;
 using Microsoft.Extensions.Options;
 using ResponseVacancyEngine.Application.DTOs;
 using ResponseVacancyEngine.Application.DTOs.HttpResponse;
+using ResponseVacancyEngine.Application.DTOs.Profile;
 using ResponseVacancyEngine.Application.Infrastructure.Interfaces.CryptoHelper;
 using ResponseVacancyEngine.Application.Infrastructure.Interfaces.Services.HeadHunterApi;
 using ResponseVacancyEngine.Infrastructure.Options;
