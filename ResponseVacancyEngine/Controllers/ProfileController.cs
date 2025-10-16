@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ResponseVacancyEngine.Application.DTOs.Profile;
 using ResponseVacancyEngine.Application.Interfaces;
 
 namespace ResponseVacancyEngine.Controllers;
@@ -20,29 +19,13 @@ public class ProfileController(IProfileService profileService) : ControllerBase
 
         return Ok(result.Data);
     }
-
-    [HttpPost("update-hh-credentials")]
-    [Authorize]
-    public async Task<IActionResult> UpdateHeadHunterClientCredentials([FromBody] HeadHunterClientCredentialsDto dto)
-    {
-        var result = await profileService.UpdateHeadHunterClientCredentialsAsync(this.User, dto);
-        
-        if (!result)
-            return StatusCode(result.StatusCode, result.Error);
-        
-        return NoContent();
-    }
     
-    [HttpPost("update-hh-tokens")]
+    [HttpGet("resumes")]
     [Authorize]
-    public async Task<IActionResult> UpdateHeadHunterJwtTokens([FromBody] HeadHunterJwtCredentialsDto dto)
+    public async Task<IActionResult> GetResumes()
     {
-        var result = await profileService.UpdateHeadHunterJwtCredentialsAsync(this.User, dto);
-        
-        if (!result)
-            return StatusCode(result.StatusCode, result.Error);
-        
-        return NoContent();
+        var result = await profileService.GetResumesAsync(this.User);
+        return Ok(result);
     }
     
     [HttpPost("update-hh-response-mode")]
@@ -55,6 +38,13 @@ public class ProfileController(IProfileService profileService) : ControllerBase
             return StatusCode(result.StatusCode, result.Error);
         
         return NoContent();
+    }
+    
+    [HttpGet("login")]
+    [Authorize] 
+    public async Task<IActionResult> Login()
+    {
+        return Ok(await profileService.Login());
     }
 
     [HttpPost("exchange-hh-code")]

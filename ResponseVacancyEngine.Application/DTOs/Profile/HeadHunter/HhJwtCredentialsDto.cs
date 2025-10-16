@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace ResponseVacancyEngine.Application.DTOs.Profile;
 
-public class HeadHunterJwtCredentialsDto
+public class HhJwtCredentialsDto
 {
     [JsonPropertyName("access_token")]
     public string AccessToken { get; set; }

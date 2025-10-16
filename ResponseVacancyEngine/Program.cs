@@ -14,6 +14,7 @@ using ResponseVacancyEngine.Application.Services;
 using ResponseVacancyEngine.Infrastructure.Helpers;
 using ResponseVacancyEngine.Infrastructure.JwtProvider;
 using ResponseVacancyEngine.Infrastructure.Options;
+using ResponseVacancyEngine.Infrastructure.Options.HeadHunter;
 using ResponseVacancyEngine.Infrastructure.Persistence;
 using ResponseVacancyEngine.Infrastructure.Persistence.DataAccess;
 using ResponseVacancyEngine.Infrastructure.Services.HeadHunterAPI;
@@ -40,14 +41,16 @@ builder.Services.AddDataProtection();
 //options
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("JwtOptions"));
 builder.Services.Configure<CryptoOptions>(builder.Configuration.GetSection("CryptoOptions"));
-builder.Services.Configure<HeadHunterUriOptions>(builder.Configuration.GetSection("HHUriOptions"));
+builder.Services.Configure<HhUriOptions>(builder.Configuration.GetSection("HHUriOptions"));
+builder.Services.Configure<HhAuthOptions>(builder.Configuration.GetSection("HHAuthOptions"));
 
 //service
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IJwtProvider, JwtProvider>();
 builder.Services.AddScoped<IProfileService, ProfileService>();
 builder.Services.AddScoped<ICryptoHelper, CryptoHelper>();
-builder.Services.AddScoped<IHeadHunterOAuthClient, HeadHunterOAuthClient>();
+builder.Services.AddScoped<IHhOAuthClient, HhOAuthClient>();
+builder.Services.AddScoped<IHhProfileClient, HhProfileClient>();
 builder.Services.AddScoped<IGroupService, GroupService>();
 builder.Services.AddScoped<IExcludedWordService, ExcludedWordService>();
 

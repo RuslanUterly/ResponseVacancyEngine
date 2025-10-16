@@ -10,9 +10,10 @@ using ResponseVacancyEngine.Persistence.Models;
 namespace ResponseVacancyEngine.Application.Services;
 
 public class ProfileService(
-    UserManager<Account> userManager, 
+    UserManager<Account> userManager,
     ICryptoHelper cryptoHelper,
-    IHeadHunterOAuthClient oAuthClient) : IProfileService
+    IHhProfileClient hhProfileClient,
+    IHhOAuthClient hhOAuthClient) : IProfileService
 {
     public async Task<Result<AccountDto>> GetCurrentAccountAsync(ClaimsPrincipal user)
     {
@@ -21,6 +22,7 @@ public class ProfileService(
         if (account is null)
             return Result<AccountDto>.NotFound("Пользователь не найден");
         
+        //TODO: Перевести на mapster
         return Result<AccountDto>.Ok(new AccountDto
         {
             Id = account.Id,
@@ -31,43 +33,24 @@ public class ProfileService(
         });
     }
 
-    public async Task<Result> UpdateHeadHunterClientCredentialsAsync(ClaimsPrincipal user,
-        HeadHunterClientCredentialsDto dto)
+    public async Task<List<HhResumeDto>> GetResumesAsync(ClaimsPrincipal user)
     {
         var account = await userManager.GetUserAsync(user);
-        
-        if (account is null)
-            return Result.NotFound("Пользователь не найден");
 
-        account.ClientId = cryptoHelper.Encrypt(dto.ClientId);
-        account.ClientSecret = cryptoHelper.Encrypt(dto.ClientSecret);
+        if (account is null)
+            return [];
         
-        var result = await userManager.UpdateAsync(account);
+        var response = await hhProfileClient.GetResumesAsync(account);
         
-        if (!result.Succeeded)
-            return Result.BadRequest("Ошибка! ID и Secret не были добавлены");
-        
-        return Result.NoContent();
+        if (!response.IsSuccessStatusCode)
+            return [];
+
+        return response?.Data!;
     }
 
-    public async Task<Result> UpdateHeadHunterJwtCredentialsAsync(ClaimsPrincipal user,
-        HeadHunterJwtCredentialsDto dto)
+    public Task<string> Login()
     {
-        var account = await userManager.GetUserAsync(user);
-
-        if (account is null)
-            return Result.NotFound("Пользователь не найден");
-        
-        account.AccessToken = cryptoHelper.Encrypt(dto.AccessToken);
-        account.RefreshToken = cryptoHelper.Encrypt(dto.RefreshToken);
-        account.AccessTokenExpiresAt = DateTime.UtcNow.AddSeconds(dto.ExpiresIn);
-        
-        var result = await userManager.UpdateAsync(account);
-        
-        if (!result.Succeeded)
-            return Result.BadRequest("Ошибка! токены не были добавлены");
-        
-        return Result.NoContent();
+        return Task.FromResult(hhOAuthClient.Login());
     }
 
     public async Task<Result> UpdateHeadHunterActiveResponse(ClaimsPrincipal user, bool isActive)
@@ -94,7 +77,7 @@ public class ProfileService(
         if (account is null)
             return Result<bool>.NotFound("Пользователь не найден");
         
-        var response = await oAuthClient.GetTokensAsync(account, code);
+        var response = await hhOAuthClient.GetTokensAsync(account, code);
 
         if (!response.IsSuccessStatusCode)
             return Result<bool>.BadRequest(response.Message);
@@ -121,7 +104,7 @@ public class ProfileService(
         if (account.AccessTokenExpiresAt > DateTime.UtcNow)
             return Result<bool>.Ok(true); 
         
-        var response = await oAuthClient.RefreshTokensAsync(account);
+        var response = await hhOAuthClient.RefreshTokensAsync(account);
 
         if (!response.IsSuccessStatusCode)
             return Result<bool>.BadRequest(response.Message);

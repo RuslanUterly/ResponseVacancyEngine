@@ -7,11 +7,9 @@ namespace ResponseVacancyEngine.Application.Interfaces;
 public interface IProfileService
 {
     Task<Result<AccountDto>> GetCurrentAccountAsync(ClaimsPrincipal user);
-    Task<Result> UpdateHeadHunterClientCredentialsAsync(ClaimsPrincipal user,
-        HeadHunterClientCredentialsDto dto);
-    Task<Result> UpdateHeadHunterJwtCredentialsAsync(ClaimsPrincipal user,
-        HeadHunterJwtCredentialsDto dto);
+    Task<List<HhResumeDto>> GetResumesAsync(ClaimsPrincipal user);
     Task<Result> UpdateHeadHunterActiveResponse(ClaimsPrincipal user, bool isActive);
+    Task<string> Login();
     Task<Result<bool>> ExchangeHeadHunterCodeAsync(ClaimsPrincipal user, string code);
     Task<Result<bool>> RefreshTokenAsync(ClaimsPrincipal user);
 }

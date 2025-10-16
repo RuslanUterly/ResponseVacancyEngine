@@ -1,6 +1,6 @@
-namespace ResponseVacancyEngine.Infrastructure.Options;
+namespace ResponseVacancyEngine.Infrastructure.Options.HeadHunter;
 
-public class HeadHunterAccountOptions
+public class HhAccountOptions
 {
     public string AccessToken { get; set; } = string.Empty;
     public int ResumeId { get; set; }

@@ -4,8 +4,7 @@ using ResponseVacancyEngine.Persistence.Models;
 
 namespace ResponseVacancyEngine.Application.Interfaces.Services.HeadHunterApi;
 
-public interface IHeadHunterOAuthClient
+public interface IHhProfileClient
 {
-    Task<HttpResponse<HeadHunterJwtCredentialsDto>> GetTokensAsync(Account account, string code);
-    Task<HttpResponse<HeadHunterJwtCredentialsDto>> RefreshTokensAsync(Account account);
+    Task<HttpResponse<List<HhResumeDto>>> GetResumesAsync(Account account);
 }

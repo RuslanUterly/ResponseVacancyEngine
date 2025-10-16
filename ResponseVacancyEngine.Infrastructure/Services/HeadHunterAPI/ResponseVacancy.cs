@@ -1,10 +1,11 @@
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using ResponseVacancyEngine.Infrastructure.Options;
+using ResponseVacancyEngine.Infrastructure.Options.HeadHunter;
 
 namespace ResponseVacancyEngine.Infrastructure.Services.HeadHunterAPI;
 
-public class ResponseVacancy(HeadHunterAccountOptions options)
+public class ResponseVacancy(HhAccountOptions options)
 {
     public async Task Respond(int vacancyId)
     {

@@ -4,7 +4,7 @@ namespace ResponseVacancyEngine.Application.DTOs.Group;
 
 public class GroupBaseDto
 {
-    public long ResumeId { get; set; }
+    public string ResumeId { get; set; }
     public string Message { get; set; }
     public GroupSettings? Settings { get; set; }
 }
