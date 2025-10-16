@@ -2,12 +2,12 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using ResponseVacancyEngine.Application.DTOs.Profile;
 using ResponseVacancyEngine.Application.Helpers.ResultPattern;
-using ResponseVacancyEngine.Application.Infrastructure.Interfaces.CryptoHelper;
-using ResponseVacancyEngine.Application.Infrastructure.Interfaces.Services.HeadHunterApi;
-using ResponseVacancyEngine.Application.Services.Profile.Interfaces;
+using ResponseVacancyEngine.Application.Interfaces;
+using ResponseVacancyEngine.Application.Interfaces.CryptoHelper;
+using ResponseVacancyEngine.Application.Interfaces.Services.HeadHunterApi;
 using ResponseVacancyEngine.Persistence.Models;
 
-namespace ResponseVacancyEngine.Application.Services.Profile;
+namespace ResponseVacancyEngine.Application.Services;
 
 public class ProfileService(
     UserManager<Account> userManager, 

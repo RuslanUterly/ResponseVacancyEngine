@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.Data;
 using ResponseVacancyEngine.Application.Helpers.ResultPattern;
-using ResponseVacancyEngine.Application.Infrastructure.Interfaces.JwtProvider;
-using ResponseVacancyEngine.Application.Services.Auth.Intefaces;
+using ResponseVacancyEngine.Application.Interfaces;
+using ResponseVacancyEngine.Application.Interfaces.JwtProvider;
 using ResponseVacancyEngine.Persistence.Models;
 
-namespace ResponseVacancyEngine.Application.Services.Auth;
+namespace ResponseVacancyEngine.Application.Services;
 
 public class AuthService(
     UserManager<Account> userManager, 

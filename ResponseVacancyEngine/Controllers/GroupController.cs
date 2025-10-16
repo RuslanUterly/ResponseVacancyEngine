@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ResponseVacancyEngine.Application.DTOs.Group;
-using ResponseVacancyEngine.Application.Services.Group.Interfaces;
+using ResponseVacancyEngine.Application.Interfaces;
 
-namespace ResponseVacancyEngine.Controllers.Group;
+namespace ResponseVacancyEngine.Controllers;
 
 [ApiController]
 [Route("[controller]")]

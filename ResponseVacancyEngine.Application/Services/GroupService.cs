@@ -2,12 +2,12 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using ResponseVacancyEngine.Application.DTOs.Group;
 using ResponseVacancyEngine.Application.Helpers.ResultPattern;
+using ResponseVacancyEngine.Application.Interfaces;
 using ResponseVacancyEngine.Application.Mapping;
-using ResponseVacancyEngine.Application.Services.Group.Interfaces;
 using ResponseVacancyEngine.Persistence.Interfaces;
 using ResponseVacancyEngine.Persistence.Models;
 
-namespace ResponseVacancyEngine.Application.Services.Group;
+namespace ResponseVacancyEngine.Application.Services;
 
 public class GroupService(
     UserManager<Account> userManager,

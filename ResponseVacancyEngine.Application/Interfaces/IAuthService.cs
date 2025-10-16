@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity.Data;
 using ResponseVacancyEngine.Application.Helpers.ResultPattern;
 
-namespace ResponseVacancyEngine.Application.Services.Auth.Intefaces;
+namespace ResponseVacancyEngine.Application.Interfaces;
 
 public interface IAuthService
 {

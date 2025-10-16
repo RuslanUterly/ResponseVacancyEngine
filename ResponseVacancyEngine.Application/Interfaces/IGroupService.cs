@@ -2,7 +2,7 @@ using System.Security.Claims;
 using ResponseVacancyEngine.Application.DTOs.Group;
 using ResponseVacancyEngine.Application.Helpers.ResultPattern;
 
-namespace ResponseVacancyEngine.Application.Services.Group.Interfaces;
+namespace ResponseVacancyEngine.Application.Interfaces;
 
 public interface IGroupService
 {

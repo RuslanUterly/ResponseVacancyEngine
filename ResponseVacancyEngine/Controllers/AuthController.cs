@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
-using ResponseVacancyEngine.Application.Services.Auth.Intefaces;
+using ResponseVacancyEngine.Application.Interfaces;
 
-namespace ResponseVacancyEngine.Controllers.Auth;
+namespace ResponseVacancyEngine.Controllers;
 
 [ApiController]
 [Route("[controller]")]

@@ -1,4 +1,4 @@
-namespace ResponseVacancyEngine.Application.Infrastructure.Interfaces.CryptoHelper;
+namespace ResponseVacancyEngine.Application.Interfaces.CryptoHelper;
 
 public interface ICryptoHelper
 {

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Extensions.Options;
-using ResponseVacancyEngine.Application.Infrastructure.Interfaces.CryptoHelper;
+using ResponseVacancyEngine.Application.Interfaces.CryptoHelper;
 using ResponseVacancyEngine.Infrastructure.Options;
 
 namespace ResponseVacancyEngine.Infrastructure.Helpers;

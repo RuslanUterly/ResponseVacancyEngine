@@ -1,10 +1,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ResponseVacancyEngine.Application.DTOs;
 using ResponseVacancyEngine.Application.DTOs.Profile;
-using ResponseVacancyEngine.Application.Services.Profile.Interfaces;
+using ResponseVacancyEngine.Application.Interfaces;
 
-namespace ResponseVacancyEngine.Controllers.Profile;
+namespace ResponseVacancyEngine.Controllers;
 
 [ApiController]
 [Route("[controller]")]

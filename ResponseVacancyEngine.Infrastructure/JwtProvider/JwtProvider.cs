@@ -3,7 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using ResponseVacancyEngine.Application.Infrastructure.Interfaces.JwtProvider;
+using ResponseVacancyEngine.Application.Interfaces.JwtProvider;
 using ResponseVacancyEngine.Infrastructure.Options;
 using ResponseVacancyEngine.Persistence.Models;
 

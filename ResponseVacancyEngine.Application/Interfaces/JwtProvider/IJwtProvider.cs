@@ -1,6 +1,6 @@
 using ResponseVacancyEngine.Persistence.Models;
 
-namespace ResponseVacancyEngine.Application.Infrastructure.Interfaces.JwtProvider;
+namespace ResponseVacancyEngine.Application.Interfaces.JwtProvider;
 
 public interface IJwtProvider
 {
