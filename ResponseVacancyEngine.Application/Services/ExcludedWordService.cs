@@ -68,8 +68,7 @@ public class ExcludedWordService(
         if (word.Group.AccountId != account.Id && !isAdmin)
             return Result<bool>.Forbidden("Недостаточно прав для редактирования иссключений");
         
-        word.Category = dto.Category;
-        word.Words = dto.Words;
+        dto.Adapt(word);
         
         var isUpdated = await wordRepository.UpdateAsync(word);
         

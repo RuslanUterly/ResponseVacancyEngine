@@ -9,6 +9,7 @@ using ResponseVacancyEngine.Application.Interfaces;
 using ResponseVacancyEngine.Application.Interfaces.CryptoHelper;
 using ResponseVacancyEngine.Application.Interfaces.JwtProvider;
 using ResponseVacancyEngine.Application.Interfaces.Services.HeadHunterApi;
+using ResponseVacancyEngine.Application.Mapping;
 using ResponseVacancyEngine.Application.Services;
 using ResponseVacancyEngine.Infrastructure.Helpers;
 using ResponseVacancyEngine.Infrastructure.JwtProvider;
@@ -124,6 +125,8 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
+
+MappingConfig.RegisterMappings();
 
 var app = builder.Build();
 

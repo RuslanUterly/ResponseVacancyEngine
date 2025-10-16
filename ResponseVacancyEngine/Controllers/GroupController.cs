@@ -27,7 +27,7 @@ public class GroupController(IGroupService groupService) : ControllerBase
 
     [Authorize]
     [HttpPost("create")]
-    public async Task<IActionResult> CreateAsync([FromBody] GroupDto dto)
+    public async Task<IActionResult> CreateAsync([FromBody] CreateGroupDto dto)
     {
         var result = await groupService.CreateAsync(this.User, dto);
 
@@ -39,7 +39,7 @@ public class GroupController(IGroupService groupService) : ControllerBase
 
     [Authorize]
     [HttpPut("update/{groupId}")]
-    public async Task<IActionResult> UpdateAsync(long groupId, [FromBody] GroupDto dto)
+    public async Task<IActionResult> UpdateAsync(long groupId, [FromBody] UpdateGroupDto dto)
     {
         var result = await groupService.UpdateAsync(this.User, groupId, dto);
         

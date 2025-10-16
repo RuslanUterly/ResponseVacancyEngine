@@ -28,7 +28,7 @@ public class GroupService(
         return group?.Adapt<GroupDto>()!;
     }
 
-    public async Task<Result<long>> CreateAsync(ClaimsPrincipal user, GroupDto dto)
+    public async Task<Result<long>> CreateAsync(ClaimsPrincipal user, CreateGroupDto dto)
     {
         var account = await userManager.GetUserAsync(user);
         
@@ -46,7 +46,7 @@ public class GroupService(
         return Result<long>.Created(groupId);
     }
 
-    public async Task<Result<bool>> UpdateAsync(ClaimsPrincipal user, long groupId, GroupDto dto)
+    public async Task<Result<bool>> UpdateAsync(ClaimsPrincipal user, long groupId, UpdateGroupDto dto)
     {
         var account = await userManager.GetUserAsync(user);
         
@@ -64,7 +64,7 @@ public class GroupService(
         if (group.AccountId != account.Id && !isAdmin)
             return Result<bool>.Forbidden("Недостаточно прав для редактирования группы");
 
-        group.Settings = dto.Settings;
+        dto.Adapt(group);
 
         var isUpdated = await groupRepository.UpdateAsync(group);
 

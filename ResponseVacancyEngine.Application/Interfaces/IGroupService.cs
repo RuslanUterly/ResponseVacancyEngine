@@ -8,7 +8,7 @@ public interface IGroupService
 {
     Task<List<GroupDto>> GetGroupsByAccountIdAsync(long accountId);
     Task<GroupDto> GetByIdAsync(long groupId);
-    Task<Result<long>> CreateAsync(ClaimsPrincipal user, GroupDto dto);
-    Task<Result<bool>> UpdateAsync(ClaimsPrincipal user, long groupId, GroupDto dto);
+    Task<Result<long>> CreateAsync(ClaimsPrincipal user, CreateGroupDto dto);
+    Task<Result<bool>> UpdateAsync(ClaimsPrincipal user, long groupId, UpdateGroupDto dto);
     Task<Result<bool>> DeleteAsync(ClaimsPrincipal user, long groupId);
 }

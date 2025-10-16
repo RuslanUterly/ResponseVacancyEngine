@@ -4,7 +4,7 @@ public class Group
 {
     public long Id { get; set; }
     public long ResumeId { get; set; }
-    public long Message { get; set; }
+    public string Message { get; set; }
     public GroupSettings? Settings { get; set; }
     
     public long AccountId { get; set; }
