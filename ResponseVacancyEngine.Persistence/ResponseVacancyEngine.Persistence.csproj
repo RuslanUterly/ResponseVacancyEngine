@@ -19,4 +19,8 @@
       </Reference>
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="Interfaces\IAccountRepository.cs" />
+    </ItemGroup>
+
 </Project>
