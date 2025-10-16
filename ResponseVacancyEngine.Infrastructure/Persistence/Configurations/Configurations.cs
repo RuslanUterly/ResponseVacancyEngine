@@ -36,7 +36,7 @@ public class ExcludedWordConfiguration : IEntityTypeConfiguration<ExcludedWord>
 {
     public void Configure(EntityTypeBuilder<ExcludedWord> builder)
     {
-        builder.HasKey(x => x.GroupId);
+        builder.HasKey(x => x.Id);
         
         builder.Property(x => x.Words)
             .HasColumnType("text[]");

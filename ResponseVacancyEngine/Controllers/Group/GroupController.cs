@@ -10,7 +10,7 @@ namespace ResponseVacancyEngine.Controllers.Group;
 public class GroupController(IGroupService groupService) : ControllerBase
 {
     [Authorize]
-    [HttpGet("my-groups")]
+    [HttpGet]
     public async Task<List<GroupDto>> GetGroupsByAccountIdAsync(long accountId)
     {
         var result = await groupService.GetGroupsByAccountIdAsync(accountId);
@@ -18,7 +18,7 @@ public class GroupController(IGroupService groupService) : ControllerBase
     }
 
     [Authorize]
-    [HttpGet("my-groups/{groupId}")]
+    [HttpGet("{groupId}")]
     public async Task<GroupDto> GetGroupByIdAsync(long groupId)
     {
         var result = await groupService.GetByIdAsync(groupId);
@@ -26,7 +26,7 @@ public class GroupController(IGroupService groupService) : ControllerBase
     }
 
     [Authorize]
-    [HttpPost("create-group")]
+    [HttpPost("create")]
     public async Task<IActionResult> CreateAsync([FromBody] GroupDto dto)
     {
         var result = await groupService.CreateAsync(this.User, dto);
@@ -38,7 +38,7 @@ public class GroupController(IGroupService groupService) : ControllerBase
     }
 
     [Authorize]
-    [HttpPut("update-group/{groupId}")]
+    [HttpPut("update/{groupId}")]
     public async Task<IActionResult> UpdateAsync(long groupId, [FromBody] GroupDto dto)
     {
         var result = await groupService.UpdateAsync(this.User, groupId, dto);
@@ -50,7 +50,7 @@ public class GroupController(IGroupService groupService) : ControllerBase
     }
 
     [Authorize]
-    [HttpDelete("delete-group/{groupId}")]
+    [HttpDelete("delete/{groupId}")]
     public async Task<IActionResult> DeleteAsync(long groupId)
     {
         var result = await groupService.DeleteAsync(this.User, groupId);

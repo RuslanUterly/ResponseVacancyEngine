@@ -1,4 +1,5 @@
 using System.Text;
+using Mapster;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,8 @@ using Microsoft.OpenApi.Models;
 using ResponseVacancyEngine.Application.Infrastructure.Interfaces.CryptoHelper;
 using ResponseVacancyEngine.Application.Infrastructure.Interfaces.JwtProvider;
 using ResponseVacancyEngine.Application.Infrastructure.Interfaces.Services.HeadHunterApi;
+using ResponseVacancyEngine.Application.Interfaces;
+using ResponseVacancyEngine.Application.Services;
 using ResponseVacancyEngine.Application.Services.Auth;
 using ResponseVacancyEngine.Application.Services.Auth.Intefaces;
 using ResponseVacancyEngine.Application.Services.Group;
@@ -33,6 +36,9 @@ builder.Services.AddControllers();
 
 builder.Services.AddHttpClient();
 
+//mapster
+builder.Services.AddMapster();
+
 //crypto
 builder.Services.AddDataProtection();
 
@@ -48,9 +54,11 @@ builder.Services.AddScoped<IProfileService, ProfileService>();
 builder.Services.AddScoped<ICryptoHelper, CryptoHelper>();
 builder.Services.AddScoped<IHeadHunterOAuthClient, HeadHunterOAuthClient>();
 builder.Services.AddScoped<IGroupService, GroupService>();
+builder.Services.AddScoped<IExcludedWordService, ExcludedWordService>();
 
 //repository
 builder.Services.AddScoped<IGroupRepository, GroupRepository>();
+builder.Services.AddScoped<IExcludedWordRepository, ExcludedWordRepository>();
 
 //db
 builder.Services.AddDbContextPool<VacancyContext>(options =>
