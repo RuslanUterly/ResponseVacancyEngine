@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using Mapster;
 using Microsoft.AspNetCore.Identity;
 using ResponseVacancyEngine.Application.DTOs.Group;
 using ResponseVacancyEngine.Application.Helpers.ResultPattern;
@@ -17,14 +18,14 @@ public class GroupService(
     {
         var groups = await groupRepository.GetGroupsByAccount(accountId);
         
-        return groups?.ToDto();
+        return groups?.Adapt<List<GroupDto>>()!;
     }
 
     public async Task<GroupDto> GetByIdAsync(long groupId)
     {
         var group = await groupRepository.GetByIdAsync(groupId);
 
-        return group?.ToDto();
+        return group?.Adapt<GroupDto>()!;
     }
 
     public async Task<Result<long>> CreateAsync(ClaimsPrincipal user, GroupDto dto)
@@ -34,7 +35,8 @@ public class GroupService(
         if (account == null) 
             return Result<long>.BadRequest("Пользователь не найден");
         
-        var group = dto.ToGroup(account.Id);
+        var group = dto.Adapt<Group>();
+        group.AccountId = account.Id;
         
         var groupId = await groupRepository.CreateAsync(group);
 
