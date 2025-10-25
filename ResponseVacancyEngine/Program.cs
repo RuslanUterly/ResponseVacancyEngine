@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Quartz;
 using ResponseVacancyEngine.Application.Interfaces;
 using ResponseVacancyEngine.Application.Interfaces.CryptoHelper;
 using ResponseVacancyEngine.Application.Interfaces.JwtProvider;
@@ -18,6 +19,7 @@ using ResponseVacancyEngine.Infrastructure.Options.HeadHunter;
 using ResponseVacancyEngine.Infrastructure.Persistence;
 using ResponseVacancyEngine.Infrastructure.Persistence.DataAccess;
 using ResponseVacancyEngine.Infrastructure.Services.HeadHunterAPI;
+using ResponseVacancyEngine.Jobs;
 using ResponseVacancyEngine.Persistence.Interfaces;
 using ResponseVacancyEngine.Persistence.Models;
 using ResponseVacancyEngine.Persistence.Models.Enums;
@@ -38,6 +40,23 @@ builder.Services.AddMapster();
 //crypto
 builder.Services.AddDataProtection();
 
+//quartz
+builder.Services.AddQuartz(q =>
+{
+    var jobKey = new JobKey("ResponseVacancyJob");
+    q.AddJob<ResponseVacancyJob>(opts => opts.WithIdentity(jobKey));
+
+    q.AddTrigger(opts => opts
+        .ForJob(jobKey)
+        .WithIdentity("ResponseVacancyTrigger")
+        .WithSimpleSchedule(x => x
+            .WithIntervalInMinutes(15)
+            .RepeatForever()));
+});
+
+// Quartz Hosted Service
+builder.Services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
+
 //options
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("JwtOptions"));
 builder.Services.Configure<CryptoOptions>(builder.Configuration.GetSection("CryptoOptions"));
@@ -51,8 +70,10 @@ builder.Services.AddScoped<IProfileService, ProfileService>();
 builder.Services.AddScoped<ICryptoHelper, CryptoHelper>();
 builder.Services.AddScoped<IHhOAuthClient, HhOAuthClient>();
 builder.Services.AddScoped<IHhProfileClient, HhProfileClient>();
+builder.Services.AddScoped<IHhVacancyClient, HhVacancyClient>();
 builder.Services.AddScoped<IGroupService, GroupService>();
 builder.Services.AddScoped<IExcludedWordService, ExcludedWordService>();
+builder.Services.AddScoped<ResponseVacancyService>();
 
 //repository
 builder.Services.AddScoped<IGroupRepository, GroupRepository>();
