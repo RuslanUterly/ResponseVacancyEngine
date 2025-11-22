@@ -9,6 +9,7 @@ using Quartz;
 using ResponseVacancyEngine.Application.Interfaces;
 using ResponseVacancyEngine.Application.Interfaces.CryptoHelper;
 using ResponseVacancyEngine.Application.Interfaces.JwtProvider;
+using ResponseVacancyEngine.Application.Interfaces.Services;
 using ResponseVacancyEngine.Application.Interfaces.Services.HeadHunterApi;
 using ResponseVacancyEngine.Application.Mapping;
 using ResponseVacancyEngine.Application.Services;
@@ -74,10 +75,12 @@ builder.Services.AddScoped<IHhVacancyClient, HhVacancyClient>();
 builder.Services.AddScoped<IGroupService, GroupService>();
 builder.Services.AddScoped<IExcludedWordService, ExcludedWordService>();
 builder.Services.AddScoped<ResponseVacancyService>();
+builder.Services.AddScoped<IVacancyService, VacancyService>();
 
 //repository
 builder.Services.AddScoped<IGroupRepository, GroupRepository>();
 builder.Services.AddScoped<IExcludedWordRepository, ExcludedWordRepository>();
+builder.Services.AddScoped<IVacancyRepository, VacancyRepository>();
 
 //db
 builder.Services.AddDbContextPool<VacancyContext>(options =>

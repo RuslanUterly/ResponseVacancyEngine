@@ -37,10 +37,10 @@ public class GroupRepository(VacancyContext context) : IGroupRepository
         return await SaveAsync();
     }
     
-    public Task<bool> DeleteAsync(Group data)
+    public async Task<bool> DeleteAsync(Group data)
     {
         context.Remove(data);
-        return SaveAsync();
+        return await SaveAsync();
     }
     
     public async Task<bool> SaveAsync() => await context.SaveChangesAsync() > 0;

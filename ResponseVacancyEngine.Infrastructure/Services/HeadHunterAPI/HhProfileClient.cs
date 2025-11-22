@@ -35,7 +35,6 @@ public class HhProfileClient(
         httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("ResponseVacancyEngine/1.0 (+http://localhost:5115)");
         
         var response = await httpClient.GetAsync(options.Value.ResumeUri);
-        response.EnsureSuccessStatusCode();
 
         if (!response.IsSuccessStatusCode)
         {

@@ -13,5 +13,6 @@ public class UpdateExcludedWordDto : ExcludedWordBaseDto;
 public class ExcludedWordDto :  ExcludedWordBaseDto
 {
     public long Id { get; set; }
+    public long GroupId { get; set; }
 }
 

@@ -38,9 +38,7 @@ public class HhVacancyClient(
 
         var response = await httpClient
             .GetAsync($"https://api.hh.ru/vacancies?text={encodedText}&experience={group.Settings?.Experience}&schedule={group.Settings?.Schedule}&archived=false&date_from={dateFrom}&page={page}");
-
-        response.EnsureSuccessStatusCode();
-
+        
         if (!response.IsSuccessStatusCode)
         {
             return new HttpResponse<HhVacanciesResponse>()
@@ -88,8 +86,6 @@ public class HhVacancyClient(
     
         var response = await httpClient.PostAsync("https://api.hh.ru/negotiations", content);
         
-        response.EnsureSuccessStatusCode();
-
         if (!response.IsSuccessStatusCode)
         {
             return new HttpResponse<bool>()

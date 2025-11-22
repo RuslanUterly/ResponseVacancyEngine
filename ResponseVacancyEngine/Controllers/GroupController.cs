@@ -10,19 +10,19 @@ namespace ResponseVacancyEngine.Controllers;
 public class GroupController(IGroupService groupService) : ControllerBase
 {
     [Authorize]
-    [HttpGet]
-    public async Task<List<GroupDto>> GetGroupsByAccountIdAsync(long accountId)
+    [HttpGet("account/{accountId}")]
+    public async Task<IActionResult> GetGroupsByAccountIdAsync(long accountId)
     {
         var result = await groupService.GetGroupsByAccountIdAsync(accountId);
-        return result;
+        return Ok(result);
     }
 
     [Authorize]
     [HttpGet("{groupId}")]
-    public async Task<GroupDto> GetGroupByIdAsync(long groupId)
+    public async Task<IActionResult> GetGroupByIdAsync(long groupId)
     {
         var result = await groupService.GetByIdAsync(groupId);
-        return result;
+        return Ok(result);
     }
 
     [Authorize]

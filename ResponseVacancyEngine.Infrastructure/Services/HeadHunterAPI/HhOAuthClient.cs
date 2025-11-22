@@ -36,7 +36,6 @@ public class HhOAuthClient(
         });
 
         var response = await httpClient.PostAsync(uriOptions.Value.TokenUri, content);
-        response.EnsureSuccessStatusCode();
 
         if (!response.IsSuccessStatusCode)
         {
